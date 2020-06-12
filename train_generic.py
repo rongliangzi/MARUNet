@@ -332,7 +332,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='PyTorch Crowd Counting')
-    parser.add_argument('--model', metavar='model name', default='M_VGG', choices=['M_VGG', 'U_VGG', 'DefCcNet', 'InceptionV3', 'CAN', 'Res50', 'CSRNet', 'M_VGG10', 'SANet', 'M_VGG7', 'Res2C', 'RefCC', 'RefUNet', 'PlusNet', 'UpNet', 'MCNN', 'MARNet'], type=str)
+    parser.add_argument('--model', metavar='model name', default='MARNet', choices=['M_VGG', 'U_VGG', 'DefCcNet', 'InceptionV3', 'CAN', 'Res50', 'CSRNet', 'M_VGG10', 'SANet', 'M_VGG7', 'Res2C', 'RefCC', 'RefUNet', 'PlusNet', 'UpNet', 'MCNN', 'MARNet'], type=str)
     parser.add_argument('--downsample', metavar='downsample ratio', default=1, choices=[1, 2, 4, 8], type=int)
     parser.add_argument('--dataset', metavar='dataset name', default='sha', choices=['sha','shb','qnrf', 'we', 'mall'], type=str)
     parser.add_argument('--resume', metavar='resume model if exists', default='', type=str)
