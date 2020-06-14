@@ -11,6 +11,7 @@ to be done
 to be done
 
 ## Pretrained Models
+
 Baidu Disk:
 
 shanghaitech PartA
@@ -42,27 +43,27 @@ MSUNet(U_VGG)
 Shanghaitech PartA
 
 |Method|MAE|RMSE|SSIM|PSNR|
-|--|--|
+|--|--|--|--|--|
 |MSUNet|57.9|94.5|0.86|29.79|
 |MARUNet|56.9|91.8|0.86|29.90|
 
 Shanghaitech PartB
 
 |Method|MAE|RMSE|SSIM|PSNR|
-|--|--|
+|--|--|--|--|--|
 |MSUNet|6.9|12.5|0.96|30.72|
 |MARUNet|6.6|10.6|0.96|31.04|
 
 UCF_CC_50
 
 |Method|MAE|RMSE|SSIM|PSNR|
-|--|--|
+|--|--|--|--|--|
 |MSUNet|316.1|442.3|0.61|19.33|
 |MARUNet|233.3|313.8|0.63|19.82|
 
 UCF-QNRF
 
 |Method|MAE|RMSE|SSIM|PSNR|
-|--|--|
+|--|--|--|--|--|
 |MSUNet|90.9|158.8|0.89|32.60|
 |MARUNet|90.8|155.1|0.90|32.79|
