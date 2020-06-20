@@ -1,42 +1,30 @@
 ﻿# MARUNet
 
-Multi-level Attention Refined UNet for crowd counting. This work has been submitted.
+Multi-level Attention Refined UNet for crowd counting. Corresponding paper has been submitted and will be available after the review process. The architecture image will upload soon.
 
 ## Data preparation
 
-to be done
+Images and groundtruth are read into dataset via .json file which is specified in json directory. Groundtruth density maps can be downloaded from this link. Modifying the path in .json file and data can be read.
 
-## How to run
+## Training
+
+```python train_generic.py --model MARNet --epochs 100 --dataset qnrf --train_json json/qnrf_train.json --val_json json/qnrf_val.json --loss 3avg-ms-ssim --lazy_val 0```
+
+You can replace `MARNet` with `U_VGG`. Note that `MARNet` is identical to `MARUNet` and `U_VGG` is identical to `MSUNet` in our paper.
+
+## Testing
 
 to be done
 
 ## Pretrained Models
 
-Baidu Disk:
+Download links:
 
-shanghaitech PartA
-
-MARUNet
-
-链接：<https://pan.baidu.com/s/1ovKkAayigImwiIMmMYquLw>
-提取码：hg9y
-
-MSUNet(U_VGG)
-
-链接：<https://pan.baidu.com/s/1ziUYS2E1epkmOAXvHXg3NQ>
-提取码：ib2g
-
-Google Drive:
-
-shanghaitech PartA
-
-MARUNet
-
-<https://drive.google.com/file/d/12CKLhSkNPwCpSu0WwfQa-WGHMd4RXhlb/view?usp=sharing>
-
-MSUNet(U_VGG)
-
-<https://drive.google.com/file/d/1S6wqC8si1l67tbnFxWGMjvZqkSs-zxn-/view?usp=sharing>
+||MARUNet(MARNet)||MSUNet(U_VGG)||
+|-|-|-|-|-|
+|SHA|[Google Drive](https://drive.google.com/file/d/12CKLhSkNPwCpSu0WwfQa-WGHMd4RXhlb/view?usp=sharing)|[Baidu Disk](https://pan.baidu.com/s/1ovKkAayigImwiIMmMYquLw), 提取码：hg9y|[Google Drive](https://drive.google.com/file/d/1S6wqC8si1l67tbnFxWGMjvZqkSs-zxn-/view?usp=sharing)|[Baidu Disk](https://pan.baidu.com/s/1ziUYS2E1epkmOAXvHXg3NQ) 提取码: ib2g|
+|SHB|||||
+|QNRF|||||
 
 ## Performance
 
@@ -67,3 +55,13 @@ UCF-QNRF
 |--|--|--|--|--|
 |MSUNet|90.9|158.8|0.89|32.60|
 |MARUNet|90.8|155.1|0.90|32.79|
+
+## Retrained Models with MSL
+
+We retrain existing models on SHA dataset with our Multi-scale Structural Loss(MSL). Compared to original MSE loss, better performance is achieved.
+
+||MAE(MSE/MSL)|RMSE(MSE/MSL)|
+|-|-|-|-
+|MCNN|110.2/**89.1**|173.2/**142.9**|
+|CSRNet|68.2/**63.4**|115.0/**103.1**|
+|CAN|62.3/**59.1**|100.0/**90.5**|

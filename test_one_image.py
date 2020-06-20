@@ -5,9 +5,16 @@ from torch.autograd import Variable
 from modeling import *
 import os
 from matplotlib import cm as CM
-from cluster_localization import *
 import matplotlib.pyplot as plt
-
+model_paths = {'sha':{'MARNet':"/home/datamining/Models/CrowdCounting/MARNet_d1_sha_random_cr0.5_3avg-ms-ssim_v50_amp0.11_bg_lsn6.pth",
+                              'U_VGG':"/home/datamining/Models/CrowdCounting/U_VGG_d1_sha_random_cr0.5_ap3avg-ms-ssim_v50_bg_lsn6.pth",
+                              'CSRNet':"/home/datamining/Models/CrowdCounting/PartAmodel_best.pth.tar"},
+                       'shb':{'MARNet':"/home/datamining/Models/CrowdCounting/MARNet_d1_shb_random_cr0.5_3avg-ms-ssim_v50_amp0.15_bg_lsn6.pth",
+                              'U_VGG':"/home/datamining/Models/CrowdCounting/U_VGG_d1_shb_random_cr0.5_3avg-ms-ssim_v50_bg_lsn6.pth",
+                              'CSRNet':"/home/datamining/Models/CrowdCounting/partBmodel_best.pth.tar"},
+                       'qnrf':{'MARNet':"/home/datamining/Models/CrowdCounting/MARNet_d1_qnrf_random_cr0.5_3avg-ms-ssim_v50_amp0.16_bg_lsn6.pth"},
+                               'U_VGG':"/home/datamining/Models/CrowdCounting/U_VGG_d1_qnrf_random_cr0.5_3avg-ms-ssim_v50_bg_lsn6.pth",
+                               }
 
 def preprocess_image(cv2im):
     """
@@ -38,15 +45,7 @@ def preprocess_image(cv2im):
     return im_as_var
 
 def load_model(models, model_paths, dataset='sha'):
-    model_paths = {'sha':{'MARNet':"/home/datamining/Models/CrowdCounting/MARNet_d1_sha_random_cr0.5_3avg-ms-ssim_v50_amp0.11_bg_lsn6.pth",
-                              'U_VGG':"/home/datamining/Models/CrowdCounting/U_VGG_d1_sha_random_cr0.5_ap3avg-ms-ssim_v50_bg_lsn6.pth",
-                              'CSRNet':"/home/datamining/Models/CrowdCounting/PartAmodel_best.pth.tar"},
-                       'shb':{'MARNet':"/home/datamining/Models/CrowdCounting/MARNet_d1_shb_random_cr0.5_3avg-ms-ssim_v50_amp0.15_bg_lsn6.pth",
-                              'U_VGG':"/home/datamining/Models/CrowdCounting/U_VGG_d1_shb_random_cr0.5_3avg-ms-ssim_v50_bg_lsn6.pth",
-                              'CSRNet':"/home/datamining/Models/CrowdCounting/partBmodel_best.pth.tar"},
-                       'qnrf':{'MARNet':"/home/datamining/Models/CrowdCounting/MARNet_d1_qnrf_random_cr0.5_3avg-ms-ssim_v50_amp0.16_bg_lsn6.pth"},
-                               'U_VGG':"/home/datamining/Models/CrowdCounting/U_VGG_d1_qnrf_random_cr0.5_3avg-ms-ssim_v50_bg_lsn6.pth",
-                               }
+    
     pretrained_models = {}
     for model in models:
         if model == 'MARNet':
