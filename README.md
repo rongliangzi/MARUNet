@@ -61,7 +61,7 @@ UCF-QNRF
 We retrain existing models on SHA dataset with our Multi-scale Structural Loss(MSL). Compared to original MSE loss, better performance is achieved.
 
 ||MAE(MSE/MSL)|RMSE(MSE/MSL)|
-|--|--|--|--
+|-|-|-|
 |MCNN|110.2/**89.1**|173.2/**142.9**|
 |CSRNet|68.2/**63.4**|115.0/**103.1**|
 |CAN|62.3/**59.1**|100.0/**90.5**|
