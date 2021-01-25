@@ -1,6 +1,11 @@
-﻿# MARUNet
+﻿
+To everyone interesting in our work [CFANet](https://openaccess.thecvf.com/content/WACV2021/html/Rong_Coarse-_and_Fine-Grained_Attention_Network_With_Background-Aware_Loss_for_Crowd_WACV_2021_paper.html) in WACV2021:
 
-Multi-level Attention Refined UNet for crowd counting. Corresponding paper has been submitted and will be available after the review process. The architecture image will upload soon.
+MARUNet in this repo is identical to the the CFANet without Density level estimator, that means only density map estimator and crowd region recognizer are used. The second row `w. CRR` means the MARUNet in Table 7 of our paper. The name MARUNet is unchanged since we wrote another manuscript before and upgrade it to CFANet and submit it to WACV2021. I have graduated last summer, so just use MARUNet is ok, which is also a good baseline, since it can get 56.9 MAE on SHA. 
+
+# MARUNet
+
+Multi-level Attention Refined UNet for crowd counting.
 
 ## Data preparation
 
@@ -14,7 +19,7 @@ You can replace `MARNet` with `U_VGG`. Note that `MARNet` is identical to `MARUN
 
 ## Testing
 
-to be done
+Use test_one_image.py to test a given image. You need to set `divide` to 50 and `ds(downsample)` to 1 in `img_test()` to get correct results. Some unused functions are not removed so you need to remove them to run it. If you want to test a model on a dataset, you need to modify it.
 
 ## Pretrained Models
 
