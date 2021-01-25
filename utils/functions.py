@@ -51,11 +51,6 @@ def get_loader(train_path, test_path, args):
     train_img_paths = []
     for img_path in glob.glob(os.path.join(train_path, '*.jpg')):
         train_img_paths.append(img_path)
-    bg_img_paths = []
-    for bg_img_path in glob.glob(os.path.join('/home/datamining/Datasets/CrowdCounting/bg/', '*.jpg')):
-        bg_img_paths.append(bg_img_path)
-    if args.use_bg:
-        train_img_paths += bg_img_paths
     test_img_paths = []
     for img_path in glob.glob(os.path.join(test_path, '*.jpg')):
         test_img_paths.append(img_path)
@@ -86,33 +81,6 @@ def get_loader_json(args):
     return train_loader, val_loader
     
     
-def get_mall_loader(args):
-    with open("/home/datamining/PycharmProjects/Few-shot learning for crowd counting/json/mall_val.json", 'r') as outfile:       
-        val_list = json.load(outfile)
-    test_loader = torch.utils.data.DataLoader(RawDataset(val_list, transform, mode='one', downsample_ratio=args.downsample, test=True), shuffle=False, batch_size=1, pin_memory=True)
-    with open("/home/datamining/PycharmProjects/Few-shot learning for crowd counting/json/mall_train.json", 'r') as outfile:
-        train_list = json.load(outfile)
-    train_loader = torch.utils.data.DataLoader(RawDataset(train_list, transform, args.crop_mode, args.downsample, args.crop_scale), shuffle=True, batch_size=1, num_workers=8, pin_memory=True)
-    return train_loader, test_loader
-
-
-def get_we_loader(train_path, test_path, args):
-    train_img_paths = []
-    for img_path in glob.glob(os.path.join(train_path, '*.jpg')):
-        train_img_paths.append(img_path)
-    single_dataset=RawDataset(train_img_paths, transform, args.crop_mode, args.downsample, args.crop_scale)
-    train_loader = torch.utils.data.DataLoader(single_dataset, shuffle=True, batch_size=1, num_workers=8, pin_memory=True)
-    
-    test_loader = []
-    for sub_dir in ['104207', '200608', '200702', '202201', '500717']:
-        test_img_paths = []
-        for img_path in glob.glob(os.path.join(test_path + sub_dir + '/img/', '*.jpg')):
-            test_img_paths.append(img_path)
-        test_set = RawDataset(test_img_paths, transform, mode='one', downsample_ratio=args.downsample, test=True)
-        test_loader.append(torch.utils.data.DataLoader(test_set, shuffle=False, batch_size=1, pin_memory=True))
-    return train_loader, test_loader
-
-
 class AverageMeter(object):
     """Computes and stores the average and current value"""
     def __init__(self):
