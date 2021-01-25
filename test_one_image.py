@@ -6,6 +6,7 @@ from modeling import *
 import os
 from matplotlib import cm as CM
 import matplotlib.pyplot as plt
+# set your pretrained model path here
 model_paths = {'sha':{'MARNet':"/home/datamining/Models/CrowdCounting/MARNet_d1_sha_random_cr0.5_3avg-ms-ssim_v50_amp0.11_bg_lsn6.pth",
                               'U_VGG':"/home/datamining/Models/CrowdCounting/U_VGG_d1_sha_random_cr0.5_ap3avg-ms-ssim_v50_bg_lsn6.pth",
                               'CSRNet':"/home/datamining/Models/CrowdCounting/PartAmodel_best.pth.tar"},
@@ -45,7 +46,6 @@ def preprocess_image(cv2im):
     return im_as_var
 
 def load_model(models, model_paths, dataset='sha'):
-    
     pretrained_models = {}
     for model in models:
         if model == 'MARNet':
@@ -63,7 +63,6 @@ def img_test(pretrained_model, img_path="/home/datamining/Pictures/IMG_98.jpg", 
     img = preprocess_image(img)
     if torch.cuda.is_available():
         img = img.cuda()
-        pretrained_model = pretrained_model.cuda()
     outputs = pretrained_model(img)
     if torch.cuda.is_available():
         dmp = outputs[0].squeeze().detach().cpu().numpy()
@@ -72,26 +71,12 @@ def img_test(pretrained_model, img_path="/home/datamining/Pictures/IMG_98.jpg", 
         dmp = outputs[0].squeeze().detach().numpy()
         amp = outputs[-1].squeeze().detach().numpy()
     dmp = dmp/divide
-    main_localization(img_path, dmp, ds)
-    print(dmp.sum(), dmp.shape)
+    print('estimated people count: ', dmp.sum())
     return dmp
 
 if __name__ == '__main__':
-    model = load_model(['CSRNet'],None)
+    model = load_model(['MARNet'],None)
+    if torch.cuda.is_available():
+        model = model.cuda()
     img_path = "/home/datamining/Pictures/IMG_10.jpg"
-    ds=8
-    dmp = img_test(model['CSRNet'], img_path, divide=1, ds=ds)
-    print(dmp[:height//4,:width//4].sum())
-    height, width = dmp.shape
-    print(height, width)
-    #dmp = cv2.resize(dmp, (int(width*ds),int(height*ds)))
-    #print(dmp.shape)
-    fig, ax = plt.subplots()
-    ax.imshow(dmp, cmap=CM.jet)
-    fig.set_size_inches(width/100.0, height/100.0)
-    plt.gca().xaxis.set_major_locator(plt.NullLocator())
-    plt.gca().yaxis.set_major_locator(plt.NullLocator())
-    plt.axis('off')
-    plt.subplots_adjust(top=1,bottom=0,left=0,right=1,hspace=0,wspace=0)
-    plt.margins(0,0)
-    plt.savefig(img_path.replace('.jpg', '_csr_den.jpg'), dpi=300)
+    dmp = img_test(model['MARNet'], img_path, divide=50, ds=1)
