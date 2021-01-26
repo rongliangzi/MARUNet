@@ -15,7 +15,7 @@ Images and groundtruth are read into dataset via .json file which is specified i
 
 ```python train_generic.py --model MARNet --epochs 100 --dataset qnrf --train_json json/qnrf_train.json --val_json json/qnrf_val.json --loss 3avg-ms-ssim --lazy_val 0```
 
-You can replace `MARNet` with `U_VGG`. Note that `MARNet` is identical to `MARUNet` and `U_VGG` is identical to `MSUNet` in our paper.
+(`MARNet` is identical to `MARUNet`.)
 
 ## Testing
 
@@ -25,11 +25,11 @@ Use test_one_image.py to test a given image. You need to set `divide` to 50 and 
 
 Download links:
 
-||MARUNet(MARNet)||MSUNet(U_VGG)||
-|-|-|-|-|-|
-|SHA|[Google Drive](https://drive.google.com/file/d/12CKLhSkNPwCpSu0WwfQa-WGHMd4RXhlb/view?usp=sharing)|[Baidu Disk](https://pan.baidu.com/s/1ovKkAayigImwiIMmMYquLw), Extraction Code: hg9y|[Google Drive](https://drive.google.com/file/d/1S6wqC8si1l67tbnFxWGMjvZqkSs-zxn-/view?usp=sharing)|[Baidu Disk](https://pan.baidu.com/s/1ziUYS2E1epkmOAXvHXg3NQ) Extraction Code: ib2g|
-|SHB|[Google Drive](https://drive.google.com/file/d/1O7Yk3bbXPXUkTKPBP73j5q9v-ZCCHTIe/view?usp=sharing)|[Baidu Disk](https://pan.baidu.com/s/1ApbLPYsA1bKq3DaJczkBeQ) Extraction Code: 21x7||[Baidu Disk](https://pan.baidu.com/s/17vzda2tEm1Q1SPjQE6gbbw) Extraction Code: 0baw|
-|QNRF||[Baidu Disk](https://pan.baidu.com/s/1SZIkroUG9Wr0Jo09bqf2dw) Extraction Code: 5ns9||[Baidu Disk](https://pan.baidu.com/s/1gsErvJOcyPFx3ycOT-VHMQ) Extraction Code: yjmr|
+||MARUNet(MARNet)||
+|-|-|-|
+|SHA|[Google Drive](https://drive.google.com/file/d/12CKLhSkNPwCpSu0WwfQa-WGHMd4RXhlb/view?usp=sharing)|[Baidu Disk](https://pan.baidu.com/s/1ovKkAayigImwiIMmMYquLw), Extraction Code: hg9y|
+|SHB|[Google Drive](https://drive.google.com/file/d/1O7Yk3bbXPXUkTKPBP73j5q9v-ZCCHTIe/view?usp=sharing)|[Baidu Disk](https://pan.baidu.com/s/1ApbLPYsA1bKq3DaJczkBeQ) Extraction Code: 21x7|
+|QNRF||[Baidu Disk](https://pan.baidu.com/s/1SZIkroUG9Wr0Jo09bqf2dw) Extraction Code: 5ns9|
 
 ## Performance
 
@@ -37,28 +37,24 @@ Shanghaitech PartA
 
 |Method|MAE|RMSE|SSIM|PSNR|
 |--|--|--|--|--|
-|MSUNet|57.9|94.5|0.86|29.79|
 |MARUNet|56.9|91.8|0.86|29.90|
 
 Shanghaitech PartB
 
 |Method|MAE|RMSE|SSIM|PSNR|
 |--|--|--|--|--|
-|MSUNet|6.9|12.5|0.96|30.72|
 |MARUNet|6.6|10.6|0.96|31.04|
 
 UCF_CC_50
 
 |Method|MAE|RMSE|SSIM|PSNR|
 |--|--|--|--|--|
-|MSUNet|316.1|442.3|0.61|19.33|
 |MARUNet|233.3|313.8|0.63|19.82|
 
 UCF-QNRF
 
 |Method|MAE|RMSE|SSIM|PSNR|
 |--|--|--|--|--|
-|MSUNet|90.9|158.8|0.89|32.60|
 |MARUNet|90.8|155.1|0.90|32.79|
 
 ## Other Retrained Models with MSL
