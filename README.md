@@ -13,7 +13,7 @@ Images and groundtruth are read into dataset via .json file which is specified i
 
 (1) **Baidu disk**: [link](https://pan.baidu.com/s/1S3dstjZ6JyxceQ4mccj77w)(Extraction Code: xvd2). 
 
-(2) **Google drive**: [UCF-QNRF](https://drive.google.com/file/d/1lju4G1Da61ddXR-FQw-zOIe6cCsGg0OL/view?usp=sharing), [ShanghaiTech](https://drive.google.com/file/d/1k1BOb-0wGO8PYt6_GVsof_Ne3udft0bG/view?usp=sharing)(For images with width or height larger than 1024, we resize the larger side to 1024, e.g., 2048\*1024 -> 1024\*512)
+(2) **Google drive**: [UCF-QNRF](https://drive.google.com/file/d/1lju4G1Da61ddXR-FQw-zOIe6cCsGg0OL/view?usp=sharing)(For images with width or height larger than 1024, we resize the larger side to 1024, e.g., 2048\*1024 -> 1024\*512), [ShanghaiTech](https://drive.google.com/file/d/1k1BOb-0wGO8PYt6_GVsof_Ne3udft0bG/view?usp=sharing)
 
 Modifying the path in .json file and data can be read.
 
